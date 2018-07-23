@@ -12,28 +12,30 @@ class Button extends Component {
     onClick: propTypes.func.isRequired, // Declara a propriedade onClick do elemento como obrigatório.
     children: propTypes.string, // o Children do elemento button deve ser uma string.
   }
+
   render() { //component render function
     return (
-      <a href=""
-        onClick={this.props.onClick}>{this.props.children}
-      </a>
+      <button onClick={this.props.onClick}>{this.props.children}</button>
     )
   }
 }
 
 class App extends Component { //main app component
-  handleClick() { // declara a função handleClick para App
-    alert('Botão Clicado')
+  state = { // cria um estado para a aplicação
+    counter: 0,
+  };
+
+  handleClick = () => { // declara a função handleClick para App
+    this.setState({ counter: this.state.counter + 1 }); // sobrepõe o valor de state.counter
   }
+
   render() { //component render function
     return (
       <Fragment>
         <h1>Hello Rocketseat</h1>
-        <Button onClick={() => { //declara uma nova função onclick nesse botão
-          alert('Button ')
-        }} />
-      <Button onClick={this.handleClick}> Enviar </Button> // usa a função handleClick de App. Enviar representa o children 
-    </Fragment>
+        <h2>{this.state.counter}</h2>
+        <Button onClick={this.handleClick}>Somar</Button> {/* Cria um componente Button com o texto somar */}
+      </Fragment>
     )
   }
 }
