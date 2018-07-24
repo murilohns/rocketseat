@@ -13,6 +13,13 @@ module.exports = {
         use: {
           loader: "babel-loader" //will transpile with babel-loader
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {loader: "style-loader"},
+          {loader: "css-loader"},
+        ]
       }
     ]
   },
