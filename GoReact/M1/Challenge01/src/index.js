@@ -4,10 +4,17 @@ import { render } from 'react-dom';
 import './main.css';
 
 import Header from './Header';
+import Post from './Post';
 
 class App extends Component {
   render() {
-    return <Header />;
+    return (
+      <Fragment>
+        <Header />
+        <Post />
+        <Post />
+      </Fragment>
+    );
   }
 }
 
