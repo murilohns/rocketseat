@@ -1,5 +1,7 @@
 body {
   background: #E9EBEE;
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -14,6 +16,7 @@ header h1 {
   color: #FFF;
   text-align: center;
   padding-top: 20px;
+  margin: 0;
 }
 
 #post-container {
@@ -22,6 +25,8 @@ header h1 {
   margin: 20px auto;
   background: #FFF;
   padding: 30px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #CCC;
 }
 
 .post-header {
@@ -52,4 +57,10 @@ header h1 {
 .hours-ago {
   font-size: 14px;
   color: #999;
+}
+
+.post-content {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
 }

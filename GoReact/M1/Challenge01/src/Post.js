@@ -1,11 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import PostHeader from './PostHeader';
+import PostContent from './PostContent';
 
-const Post = () => (
+const Post = ({ data }) => (
   <div id="post-container">
-    <PostHeader />
+    <PostHeader data={data} />
+    <PostContent data={data} />
   </div>
 );
+
+Post.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
 export default Post;
