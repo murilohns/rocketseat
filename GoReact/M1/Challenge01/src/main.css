@@ -1,0 +1,17 @@
+body {
+  background: #E9EBEE;
+}
+
+header {
+  background: #4267B2;
+  border-bottom: 1px;
+  border-color: #29487D;
+  height: 60px;
+}
+
+header h1 {
+  font-size: 20px;
+  color: #FFF;
+  text-align: center;
+  padding-top: 20px;
+}
