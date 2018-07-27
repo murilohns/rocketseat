@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <title>Snippetfy | Salve seus snippets de código</title>
-    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/dracula.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+{% extends 'layouts/default.njk' %}
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-    <script src="/main.js"></script>
-  </head>
-  <body>
+{% block body %}
     <div class="auth-wrapper">
       <form method="POST" action="" class="form-signin">
         <h1>Fazer login</h1>
@@ -24,6 +12,4 @@
         <a href="/signup">Criar conta grátis</a>
       </form>
     </div>
-
-  </body>
-</html>
+{% endblock %}
