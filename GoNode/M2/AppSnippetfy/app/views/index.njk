@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8">
     <title>App Snippetfy</title>
   </head>
   <body>
-    Hello Rocketseat
+   <h1>Hello Rocketseat</h1>
+
+    {% for user in users %}
+      <p>{{user.name}} - {{user.email}}</p>
+    {% endfor %}
   </body>
 </html>
