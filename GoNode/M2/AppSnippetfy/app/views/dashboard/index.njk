@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dashboard</title>
-</head>
-<body>
-  Dashboard fununciando
-</body>
-</html>
+{% extends 'layouts/default.njk' %}
+
+{% block body %}
+  <div class="wrapper">i
+    <nav id="main">
+      <div class="header">
+        <strong>Minha biblioteca</strong>
+        <a href="/signout">Sair</a>
+      </div>
+
+      <div class="categories">
+        <strong>Categorias</strong>
+
+        <ul>
+          {% for category in categories %}
+          <li>
+            <a href="/app/categories/{{ category.id }}">
+              {{category.title}}
+              <span>{{ category.Snippets.length }}</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        <a href="">Nova categoria</a>
+      </div>
+    </nav>
+  </div>
+
+{% endblock %}
