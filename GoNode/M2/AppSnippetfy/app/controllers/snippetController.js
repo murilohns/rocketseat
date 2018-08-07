@@ -16,6 +16,21 @@ const store = async (req, res, next) => {
   }
 };
 
+const update = async (req, rest, next) => {
+  try {
+    const { id, categoryId } = req.params;
+    const snippet = await Snippet.findById(id);
+
+    await snippet.update(req.body);
+
+    req.flash('success', 'Snippet atualizado com sucesso!');
+
+    return rest.redirect(`/app/categories/${categoryId}/snippets/${id}`);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 const show = async (req, res, next) => {
   try {
     const { categoryId, snippetId } = req.params;
@@ -40,10 +55,11 @@ const show = async (req, res, next) => {
       currentSnippet: snippet,
     });
   } catch (err) {
-    return next();
+    return next(err);
   }
 };
 module.exports = {
   store,
   show,
+  update,
 };
