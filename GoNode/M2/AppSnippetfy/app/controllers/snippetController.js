@@ -31,6 +31,18 @@ const update = async (req, rest, next) => {
   }
 };
 
+const destroy = async (req, rest, next) => {
+  try {
+    await Snippet.destroy({ where: { id: req.params.id } });
+
+    req.flash('success', 'Snippet deletado com sucesso!');
+
+    return rest.redirect(`/app/categories/${req.params.categoryId}`);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 const show = async (req, res, next) => {
   try {
     const { categoryId, snippetId } = req.params;
@@ -62,4 +74,5 @@ module.exports = {
   store,
   show,
   update,
+  destroy,
 };
