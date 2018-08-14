@@ -4,6 +4,12 @@ const userController = require('../app/controllers/userController');
 
 const routes = express.Router();
 
+routes.use((req, res, next) => {
+  res.locals.flashSuccess = req.flash('success');
+  res.locals.flashError = req.flash('error');
+  next();
+});
+
 /**
  * Auth
  */
