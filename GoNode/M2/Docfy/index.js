@@ -15,6 +15,8 @@ nunjucks.configure(path.resolve('app', 'views'), {
   express: app,
 });
 
+app.set('view engine', 'njk');
+
 app.use('/', routes);
 
 app.listen(3000);
