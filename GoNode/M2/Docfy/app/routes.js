@@ -1,6 +1,7 @@
 const express = require('express');
 
 const userController = require('../app/controllers/userController');
+const projectController = require('../app/controllers/projectController');
 
 const routes = express.Router();
 
@@ -20,5 +21,11 @@ routes.get('/signup', userController.signup);
 
 routes.post('/authenticate', userController.authenticate);
 routes.post('/register', userController.register);
+
+/**
+ * Projects
+ */
+routes.get('/projects', projectController.index);
+routes.post('/projects/create', projectController.store);
 
 module.exports = routes;

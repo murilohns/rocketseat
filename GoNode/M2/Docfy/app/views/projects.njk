@@ -1,0 +1,23 @@
+{% extends 'layouts/dashboard.njk' %}
+
+{% block useraction %}
+  <form action="/dashboard/projects/create" method="post">
+    <input type="text" name="name" placeholder="Novo projeto">
+    <button type="submit" class="btn">
+      <img src="img/plus.svg">
+    </button>
+  </form>
+{% endblock %}
+
+
+{% block body %}
+  <section id="content">
+    <div class="project-list">
+
+      <a href="project.html">Exemplo de projeto</a>
+      <a href="project.html">Outro projeto</a>
+      <a href="project.html">Mais um projeto</a>
+      <a href="project.html">Projeto exemplo</a>
+    </div>
+  </section>
+{% endblock %}
