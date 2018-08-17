@@ -12,11 +12,13 @@ module.exports = {
         allowNull: false,
         type: DataTypes.DATE,
       },
-      updateddAt: {
+      updatedAt: {
         allowNull: false,
         type: DataTypes.DATE,
       },
     });
+  },
+>>>>>>> docfy: persist sessions on database
 
   down: (queryInterface) => {
     queryInterface.dropTable('Sessions');
