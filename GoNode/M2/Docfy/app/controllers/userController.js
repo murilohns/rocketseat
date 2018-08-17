@@ -41,9 +41,12 @@ const authenticate = async (req, res) => {
   return req.session.save(() => res.redirect('/dashboard'));
 };
 
+const signout = async (req, res) => req.session.destroy(() => res.redirect('/'));
+
 module.exports = {
   authenticate,
   register,
   signin,
   signup,
+  signout,
 };
