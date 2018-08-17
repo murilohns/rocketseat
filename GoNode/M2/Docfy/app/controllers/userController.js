@@ -35,8 +35,10 @@ const authenticate = async (req, res) => {
     return res.redirect('back');
   }
 
+  req.session.user = user;
+
   req.flash('success', 'Login realizado com sucesso');
-  return res.redirect('/dashboard');
+  return req.session.save(() => res.redirect('/dashboard'));
 };
 
 module.exports = {
