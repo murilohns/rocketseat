@@ -14,7 +14,7 @@ module.exports = {
         onDelete: 'CASCADE',
         allowNull: false,
       },
-      title: {
+      name: {
         allowNull: false,
         type: DataTypes.STRING,
       },

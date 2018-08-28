@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Project = sequelize.define('Project', {
-    title: DataTypes.STRING,
+    name: DataTypes.STRING,
   });
 
   Project.associate = (models) => {

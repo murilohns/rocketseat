@@ -18,7 +18,6 @@ module.exports = {
       },
     });
   },
->>>>>>> docfy: persist sessions on database
 
   down: (queryInterface) => {
     queryInterface.dropTable('Sessions');

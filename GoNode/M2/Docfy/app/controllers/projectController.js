@@ -1,15 +1,14 @@
-const { User } = require('../models');
 const { Project } = require('../models');
 
-const index = (req, res) => {
+const index = async (req, res) => {
   try {
-    const projects = Project.findAll({
+    const projects = await Project.findAll({
       where: {
         UserId: req.session.user.id,
       },
     });
 
-    res.render('/projects', { projects });
+    res.render('projects', { projects });
   } catch (err) {
     console.log(err);
   }
@@ -17,7 +16,7 @@ const index = (req, res) => {
 
 const store = async (req, res) => {
   try {
-    const project = await Project.save({
+    const project = await Project.create({
       ...req.body,
       UserId: req.session.user.id,
     });

@@ -38,7 +38,7 @@ const authenticate = async (req, res) => {
   req.session.user = user;
 
   req.flash('success', 'Login realizado com sucesso');
-  return req.session.save(() => res.redirect('/dashboard'));
+  return req.session.save(() => res.redirect('projects'));
 };
 
 const signout = async (req, res) => req.session.destroy(() => res.redirect('/'));
