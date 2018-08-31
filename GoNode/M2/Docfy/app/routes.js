@@ -1,5 +1,6 @@
 const express = require('express');
 
+const dashboardController = require('../app/controllers/dashboardController');
 const userController = require('../app/controllers/userController');
 const projectController = require('../app/controllers/projectController');
 const sectionController = require('../app/controllers/sectionController');
@@ -26,7 +27,7 @@ routes.post('/register', userController.register);
 /**
  * Projects
  */
-routes.get('/projects', projectController.index);
+routes.get('/dashboard', dashboardController.index);
 routes.get('/projects/:id', projectController.index);
 routes.post('/projects/create', projectController.store);
 

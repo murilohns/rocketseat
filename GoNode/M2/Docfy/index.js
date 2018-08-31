@@ -20,6 +20,10 @@ app.set('view engine', 'njk');
 
 app.use(session(sessionConfig));
 app.use(flash());
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  next();
+});
 
 app.use('/', routes);
 
