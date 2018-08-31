@@ -8,7 +8,7 @@ const index = async (req, res) => {
       },
     });
 
-    res.render('projects', { projects });
+    res.render('dashboard', { projects });
   } catch (err) {
     console.log(err);
   }
@@ -22,7 +22,7 @@ const store = async (req, res) => {
     });
 
     req.flash('success', 'Projeto criado com sucesso');
-    return res.redirect(`/app/dashboard/projects/${project.id}`);
+    return res.redirect(`/projects/${project.id}`);
   } catch (err) {
     console.log(err);
   }
