@@ -1,0 +1,21 @@
+{% extends 'layouts/default.njk' %}
+
+{% block body %}
+    {% include 'partials/menu.njk' %}
+    <section id="main">
+
+      <div class="container">
+        <header>
+          {% include 'partials/projects-header.njk' %}
+        </header>
+
+        <section id="content">
+          <div class="project-list">
+            {% for project in projects %}
+              <a href="/projects/{{project.id}}">{{project.name}}</a>
+            {% endfor %}
+          </div>
+        </section>
+      </div>
+    </section>
+{% endblock %}
