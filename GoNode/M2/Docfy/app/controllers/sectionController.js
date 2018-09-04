@@ -1,4 +1,4 @@
-const Section = require('../models');
+const { Section } = require('../models');
 
 const index = (req, res, next) => res.render('sections');
 
@@ -17,6 +17,7 @@ const store = async (req, res, next) => {
     console.log(e);
   }
 };
+
 module.exports = {
   index,
   store,

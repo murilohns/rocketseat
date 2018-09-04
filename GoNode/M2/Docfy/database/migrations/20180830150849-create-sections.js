@@ -10,6 +10,7 @@ module.exports = {
       ProjectId: {
         type: DataTypes.INTEGER,
         references: { model: 'Projects', key: 'id' },
+        foreignKey: true,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false,

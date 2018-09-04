@@ -25,9 +25,13 @@ routes.post('/authenticate', userController.authenticate);
 routes.post('/register', userController.register);
 
 /**
- * Projects
+ * Dashboard
  */
 routes.get('/dashboard', dashboardController.index);
+
+/**
+ * Projects
+ */
 routes.get('/projects/:id', projectController.index);
 routes.post('/projects/create', projectController.store);
 
@@ -35,7 +39,7 @@ routes.post('/projects/create', projectController.store);
  * Sections
  */
 routes.get('/projects/:projectId/sections', sectionController.index);
-routes.get('/projects/:projectId/sections/:sectionId', projectController.index);
+routes.get('/projects/:projectId/sections/:sectionId', sectionController.index);
 routes.post('/projects/:projectId/sections/create', sectionController.store);
 
 module.exports = routes;

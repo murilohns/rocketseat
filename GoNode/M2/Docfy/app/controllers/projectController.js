@@ -1,14 +1,21 @@
-const { Project } = require('../models');
+const { Project, Section } = require('../models');
 
 const index = async (req, res) => {
   try {
-    const projects = await Project.findAll({
+    const project = await Project.findOne({
       where: {
-        UserId: req.session.user.id,
+        id: req.params.id,
       },
     });
 
-    res.render('dashboard', { projects });
+    const sections = await Section.findAll({
+      include: [Project],
+      where: {
+        ProjectId: project.id,
+      },
+    });
+
+    return res.render('projects/show', { project, sections });
   } catch (err) {
     console.log(err);
   }
