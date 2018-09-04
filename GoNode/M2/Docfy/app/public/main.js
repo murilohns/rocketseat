@@ -8,16 +8,13 @@ $(document).ready(() => {
     if (alert) alert.className += ' alert-hidden';
   }, 3000);
 
-  /**
-   * MDE Editor
-   */
+  /** MDE */
   $('.mde').each(function () {
     const simplemde = new SimpleMDE({
       element: this,
       spellChecker: false,
       status: false,
     });
-    // simplemde.render();
   });
 
   /**
@@ -25,20 +22,18 @@ $(document).ready(() => {
    */
   $('[data-modal-open]').click(function (event) {
     event.preventDefault();
-
-    $($(this).data('modal-open')).addClass('active');
+    $($(this).data('modal-open')).addClass('activeModal');
   });
 
   $('[data-modal-close]').click(function (event) {
     event.preventDefault();
-
-    $($(this).data('modal-close')).removeClass('active');
+    $($(this).data('modal-close')).removeClass('activeModal');
   });
 
   $(document).keydown((e) => {
     e = e || window.event;
     if (e.keyCode == 27) {
-      $('.modal').removeClass('active');
+      $('.modal').removeClass('activeModal');
     }
   });
 });

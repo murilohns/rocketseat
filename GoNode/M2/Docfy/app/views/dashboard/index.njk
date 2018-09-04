@@ -1,23 +1,26 @@
-{% extends 'layouts/default.njk' %}
+{% extends 'layouts/dashboard.njk' %}
 
 {% block body %}
-  <div class="wrapper">
-    {% include 'partials/menu.njk' %}
-    <section id="main">
+  <section id="main">
+    <div class="container">
+      <header>
+        <h2>Meus projetos ({{ projects.length }})</h2>
+        <div class="addon">
+          <form action="/projects/create" method="post">
+            <input type="text" name="name" placeholder="Novo projeto">
+            <button type="submit" class="btn">
+              <img src="/img/plus.svg">
+            </button>
+          </form>
+        </div>
+      </header>
 
-      <div class="container">
-        <header>
-          {% include 'partials/projects-header.njk' %}
-        </header>
-
-        <section id="content">
-          <div class="project-list">
-            {% for project in projects %}
-              <a href="/projects/{{project.id}}">{{project.name}}</a>
-            {% endfor %}
-          </div>
-        </section>
-      </div>
-    </section>
-  </div>
+      <section id="content">
+        <div class="project-list">
+          {% for project in projects %}
+            <a href="/projects/{{project.id}}">{{project.name}}</a>
+          {% endfor %}
+        </div>
+      </section>
+  </section>
 {% endblock %}

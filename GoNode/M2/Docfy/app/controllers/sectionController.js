@@ -1,6 +1,8 @@
 const { Section } = require('../models');
 
-const index = (req, res, next) => res.render('sections');
+const index = (req, res, next) => res.render('sections/show');
+
+const createForm = (req, res, next) => res.render('sections/create');
 
 const store = async (req, res, next) => {
   try {
@@ -19,6 +21,7 @@ const store = async (req, res, next) => {
 };
 
 module.exports = {
+  createForm,
   index,
   store,
 };
