@@ -21,7 +21,7 @@ module.exports = {
       },
       content: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       createdAt: {
         allowNull: false,

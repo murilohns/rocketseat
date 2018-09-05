@@ -38,8 +38,8 @@ routes.post('/projects/create', projectController.store);
 /**
  * Sections
  */
-routes.get('/projects/:projectId/sections', sectionController.index);
-routes.get('/projects/:projectId/sections/create', sectionController.createForm);
-routes.post('/projects/:projectId/sections/create', sectionController.store);
+routes.get('/projects/:projectId/sections/:sectionId', sectionController.index);
+routes.get('/projects/:projectId/sections', sectionController.createForm);
+routes.post('/projects/:projectId/sections', sectionController.store);
 
 module.exports = routes;
