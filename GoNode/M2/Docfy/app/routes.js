@@ -39,7 +39,9 @@ routes.get('/dashboard', dashboardController.index);
  */
 routes.use('/projects', authMiddleware);
 routes.get('/projects/:id', projectController.index);
-routes.post('/projects/create', projectController.store);
+routes.put('/projects/:id', projectController.update);
+routes.delete('/projects/:id', projectController.destroy);
+routes.post('/projects', projectController.store);
 
 /**
  * Sections

@@ -10,8 +10,8 @@
 </header>
 
 <div class="modal" id="edit-title">
-  <form class="modal-content" action="/projects/edit/{{project.id}}?_method=PUT" method="post">
-    <input type="text" name="title" value="{{project.name}}">
+  <form class="modal-content" action="/projects/{{project.id}}?_method=PUT" method="POST">
+    <input type="text" name="name" value="{{project.name}}">
     <button type="submit" class="btn">
       SALVAR
     </button>

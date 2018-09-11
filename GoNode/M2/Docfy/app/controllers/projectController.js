@@ -31,11 +31,42 @@ const store = async (req, res, next) => {
     req.flash('success', 'Projeto criado com sucesso');
     return res.redirect(`/projects/${project.id}`);
   } catch (err) {
-    console.log(err);
+    return next(err);
+  }
+};
+
+const update = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const project = await Project.findById(id);
+
+    project.update(req.body);
+
+    req.flash('success', 'Projeto atualizado com sucesso');
+    return res.redirect(`/projects/${project.id}`);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+const destroy = async (req, res, next) => {
+  try {
+    await Project.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    req.flash('success', 'Projeto deletado com sucesso');
+    return res.redirect('/dashboard');
+  } catch (err) {
+    return next(err);
   }
 };
 
 module.exports = {
   index,
   store,
+  update,
+  destroy,
 };

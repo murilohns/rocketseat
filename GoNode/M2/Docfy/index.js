@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
+const methodOverride = require('method-override');
 
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -12,6 +13,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.resolve('app', 'public')));
+app.use(methodOverride('_method'));
 nunjucks.configure(path.resolve('app', 'views'), {
   autoscape: true,
   express: app,
