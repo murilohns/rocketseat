@@ -1,6 +1,6 @@
 const { Project } = require('../models');
 
-const index = async (req, res) => {
+const index = async (req, res, next) => {
   try {
     const projects = await Project.findAll({
       where: {
@@ -10,9 +10,10 @@ const index = async (req, res) => {
 
     return res.render('dashboard/index', { projects });
   } catch (err) {
-    console.log(err);
+    return next(err);
   }
 };
+
 module.exports = {
   index,
 };

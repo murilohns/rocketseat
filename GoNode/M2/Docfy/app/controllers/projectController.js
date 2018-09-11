@@ -1,6 +1,6 @@
 const { Project, Section } = require('../models');
 
-const index = async (req, res) => {
+const index = async (req, res, next) => {
   try {
     const project = await Project.findOne({
       where: {
@@ -17,11 +17,11 @@ const index = async (req, res) => {
 
     return res.render('projects/show', { project, sections });
   } catch (err) {
-    console.log(err);
+    return next(err);
   }
 };
 
-const store = async (req, res) => {
+const store = async (req, res, next) => {
   try {
     const project = await Project.create({
       ...req.body,
