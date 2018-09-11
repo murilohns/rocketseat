@@ -1,7 +1,7 @@
 <nav>
   <div class="sessions">
-  {% for section in sections %}
-    <a href="/projects/{{project.id}}/sections/{{section.id}}">{{section.title}}</a>
+  {% for loopSection in sections %}
+    <a href="/projects/{{project.id}}/sections/{{loopSection.id}}" class="{% if section.id == loopSection.id %}active{% endif %}">{{loopSection.title}}</a>
   {% endfor %}
   </div>
 

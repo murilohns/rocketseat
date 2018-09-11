@@ -50,13 +50,66 @@ const store = async (req, res, next) => {
 
     req.flash('success', 'Seção criada com sucesso');
     return res.redirect(`/projects/${projectId}/sections/${section.id}`);
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    return next(err);
   }
 };
 
+const destroy = async (req, res, next) => {
+  const { sectionId, projectId } = req.params;
+  try {
+    await Section.destroy({
+      where: {
+        id: sectionId,
+      },
+    });
+
+    req.flash('success', 'Seção deletada com sucesso');
+    return res.redirect(`/projects/${projectId}`);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+const update = async (req, res, next) => {
+  const { sectionId, projectId } = req.params;
+  try {
+    const section = await Section.findById(sectionId);
+
+    await section.update(req.body);
+
+    req.flash('success', 'Seção editada com sucesso');
+    return res.redirect(`/projects/${projectId}/sections/${sectionId}`);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+const editForm = async (req, res, next) => {
+  try {
+    const { sectionId, projectId } = req.params;
+
+    const section = await Section.findById(sectionId);
+
+    const sections = await Section.findAll({
+      include: [Project],
+      where: {
+        ProjectId: projectId,
+      },
+    });
+
+    const project = await Project.findById(projectId);
+
+    return res.render('sections/edit', { project, sections, section });
+  } catch (err) {
+    return next(err);
+  }
+};
 module.exports = {
   createForm,
   index,
   store,
+  destroy,
+  update,
+  editForm,
 };

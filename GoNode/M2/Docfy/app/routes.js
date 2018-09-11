@@ -47,6 +47,9 @@ routes.post('/projects', projectController.store);
  * Sections
  */
 routes.get('/projects/:projectId/sections/:sectionId', sectionController.index);
+routes.get('/projects/:projectId/sections/:sectionId/edit', sectionController.editForm);
+routes.put('/projects/:projectId/sections/:sectionId', sectionController.update);
+routes.delete('/projects/:projectId/sections/:sectionId', sectionController.destroy);
 routes.get('/projects/:projectId/sections', sectionController.createForm);
 routes.post('/projects/:projectId/sections', sectionController.store);
 

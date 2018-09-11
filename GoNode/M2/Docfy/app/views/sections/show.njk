@@ -9,9 +9,12 @@
         <article>
           <div class="project-header">
             <h1>{{section.title}}</h1>
-            <a href="">Remover seção</a>
+            <a href="/projects/{{project.id}}/sections/{{section.id}}/edit" class="edit">Editar seção</a>
+            <form action="/projects/{{project.id}}/sections/{{section.id}}?_method=DELETE" method="post">
+              <button type="submit" class="delete">Remover seção</button>
+            </form>
           </div>
-          {{section.content}}
+          {{section.formattedContent | safe}}
         </article>
       </section>
     </div>
