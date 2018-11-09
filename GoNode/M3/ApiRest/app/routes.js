@@ -30,6 +30,12 @@ routes.delete('/tweets/:id', controllers.tweetController.destroy);
 routes.put('/users', controllers.userController.update);
 
 /**
+ * Follows
+ */
+routes.post('/follow/:userId', controllers.followController.create);
+routes.delete('/unfollow/:userId', controllers.followController.destroy);
+
+/**
  * Likes
  */
 routes.post('/like/:tweetId', controllers.likeController.toggle);
