@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
+const sendMail = require('../services/mailer');
 
 const User = mongoose.model('User');
 
 const signin = async (req, res, next) => {
   try {
-    const {
-      username,
-      password,
-    } = req.body;
+    const { username, password } = req.body;
 
     const user = await User.findOne({
       username,
@@ -36,24 +34,33 @@ const signin = async (req, res, next) => {
 
 const signup = async (req, res, next) => {
   try {
-    const {
-      email,
-      username,
-    } = req.body;
+    const { email, username } = req.body;
 
-    if (await User.findOne({
-      $or: [{
-        email,
-      }, {
-        username,
-      }],
-    })) {
+    if (
+      await User.findOne({
+        $or: [
+          {
+            email,
+          },
+          {
+            username,
+          },
+        ],
+      })
+    ) {
       return res.status(400).json({
         error: 'User already exists',
       });
     }
 
     const user = await User.create(req.body);
+
+    await sendMail({
+      from: '"Murilo Souza" <murilohns@gmail.com>',
+      to: user.email,
+      subject: 'Bem vindo ao Tweetfy',
+      html: `Seja bem-vindo ao Tweetfy, ${user.name} faça login com sua conta.`,
+    });
 
     return res.json({
       user,
