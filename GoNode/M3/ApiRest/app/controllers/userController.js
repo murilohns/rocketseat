@@ -7,24 +7,25 @@ const update = async (req, res, next) => {
   try {
     const id = req.userId;
     const {
-      name,
-      username,
-      password,
-      confirmPassword,
+      name, username, password, confirmPassword,
     } = req.body;
 
     if (password && password !== confirmPassword) {
       return res.status(400).json({
-        error: 'Password doesn\'t match',
+        error: "Password doesn't match",
       });
     }
 
-    const user = await User.findByIdAndUpdate(id, {
-      name,
-      username,
-    }, {
-      new: true,
-    });
+    const user = await User.findByIdAndUpdate(
+      id,
+      {
+        name,
+        username,
+      },
+      {
+        new: true,
+      },
+    );
 
     if (password) {
       user.password = password;
@@ -37,6 +38,23 @@ const update = async (req, res, next) => {
   }
 };
 
+const feed = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.userId);
+
+    const { following } = user;
+
+    const tweets = await Tweet.find({
+      user: { $in: [user.id, ...following] },
+    })
+      .limit(50)
+      .sort('-createdAt');
+
+    return res.json(tweets);
+  } catch (err) {
+    return next(err);
+  }
+};
 const me = async (req, res, next) => {
   try {
     const user = await User.findById(req.userId);
@@ -59,4 +77,5 @@ const me = async (req, res, next) => {
 module.exports = {
   update,
   me,
+  feed,
 };

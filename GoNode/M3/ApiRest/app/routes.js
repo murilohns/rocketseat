@@ -29,6 +29,7 @@ routes.delete('/tweets/:id', controllers.tweetController.destroy);
  */
 routes.put('/users', controllers.userController.update);
 routes.get('/users/me', controllers.userController.me);
+routes.get('/feed', controllers.userController.feed);
 
 /**
  * Follows
