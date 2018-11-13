@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   /**
    * Auth
@@ -6,4 +8,9 @@ module.exports = {
   port: process.env.MAIL_PORT,
   user: process.env.MAIL_USER,
   pass: process.env.MAIL_PASSWORD,
+
+  /**
+   * Templates path
+   */
+  templatesPath: path.resolve('./resources/mail'),
 };

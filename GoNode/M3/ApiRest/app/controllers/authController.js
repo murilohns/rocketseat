@@ -55,11 +55,15 @@ const signup = async (req, res, next) => {
 
     const user = await User.create(req.body);
 
-    await sendMail({
+    sendMail({
       from: '"Murilo Souza" <murilohns@gmail.com>',
       to: user.email,
       subject: 'Bem vindo ao Tweetfy',
-      html: `Seja bem-vindo ao Tweetfy, ${user.name} faça login com sua conta.`,
+      template: 'auth/register',
+      context: {
+        name: user.name,
+        username: user.username,
+      },
     });
 
     return res.json({
