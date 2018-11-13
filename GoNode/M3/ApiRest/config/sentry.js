@@ -1,3 +1,3 @@
 module.exports = {
-  sentryDSN: 'YOUR_SENTRY_KEY',
+  sentryDSN: process.env.SENTRYDSN,
 };
