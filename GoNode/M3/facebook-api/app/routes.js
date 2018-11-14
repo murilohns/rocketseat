@@ -5,7 +5,12 @@ const controllers = requireDir('./controllers');
 
 const routes = express.Router();
 
+/**
+ * Auth
+ */
 routes.post('/signup', controllers.authController.signup);
+routes.post('/signin', controllers.authController.signin);
+
 routes.get('/status', (req, res, next) => {
   try {
     return res.send('API UP');
