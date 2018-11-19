@@ -5,10 +5,7 @@ const User = mongoose.model('User');
 const signup = async (req, res, next) => {
   try {
     const {
-      email,
-      password,
-      name,
-      confirmPassword,
+      email, password, name, confirmPassword,
     } = req.body;
 
     if (!email) {
@@ -47,7 +44,10 @@ const signup = async (req, res, next) => {
 
     const user = await User.create(req.body);
 
-    return res.json(user);
+    return res.json({
+      user,
+      token: user.generateToken(),
+    });
   } catch (err) {
     return next(err);
   }
@@ -55,10 +55,7 @@ const signup = async (req, res, next) => {
 
 const signin = async (req, res, next) => {
   try {
-    const {
-      email,
-      password,
-    } = req.body;
+    const { email, password } = req.body;
 
     const user = await User.findOne({
       email,
@@ -76,7 +73,10 @@ const signin = async (req, res, next) => {
       });
     }
 
-    return res.send(user);
+    return res.json({
+      user,
+      token: user.generateToken(),
+    });
   } catch (err) {
     return next(err);
   }
