@@ -22,8 +22,17 @@ routes.use(authMiddleware.auth);
  * Posts
  */
 routes.post('/posts', controllers.postController.create);
-routes.get('/posts/:id', controllers.postController.show);
-routes.post('/posts/:id/like', controllers.postController.like);
+routes.get('/posts/:postId', controllers.postController.show);
+
+/**
+ * Likes
+ */
+routes.post('/posts/:postId/like', controllers.postController.like);
+
+/**
+ * Comments
+ */
+routes.post('/posts/:postId/comment', controllers.commentController.create);
 
 routes.get('/status', (req, res, next) => {
   try {
