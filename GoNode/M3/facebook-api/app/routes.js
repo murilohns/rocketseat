@@ -24,6 +24,7 @@ routes.use(authMiddleware.auth);
 routes.post('/posts', controllers.postController.create);
 routes.get('/posts/:postId', controllers.postController.show);
 routes.post('/posts/:postId/like', controllers.postController.like);
+routes.delete('/posts/:postId', controllers.postController.destroy);
 
 
 /**
