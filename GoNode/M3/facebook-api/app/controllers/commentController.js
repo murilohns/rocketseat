@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { indexOf } = require('ramda');
 
 const Post = mongoose.model('Post');
 const Comment = mongoose.model('Comment');
@@ -30,6 +31,30 @@ const create = async (req, res, next) => {
   }
 };
 
+const like = async (req, res, next) => {
+  try {
+    const { commentId } = req.params;
+
+    const comment = await Comment.findById(commentId);
+
+
+    const liked = indexOf(req.userId, comment.likes) !== -1;
+
+    if (liked) {
+      comment.likes.pop(liked);
+    } else {
+      comment.likes.push(req.userId);
+    }
+
+    await comment.save();
+
+    return res.json(comment);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
+  like,
   create,
 };
