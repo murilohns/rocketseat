@@ -34,6 +34,7 @@ routes.delete('/posts/:postId', controllers.postController.destroy);
 routes.get('/posts/:postId/comments/:commentId', controllers.commentController.show);
 routes.post('/posts/:postId/comments', controllers.commentController.create);
 routes.post('/posts/:postId/comments/:commentId/like', controllers.commentController.like);
+routes.delete('/posts/:postId/comments/:commentId', controllers.commentController.destroy);
 
 routes.get('/status', (req, res, next) => {
   try {

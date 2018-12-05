@@ -7,7 +7,7 @@ const CommentSchema = new mongoose.Schema({
     trim: true,
     maxlength: 280,
   },
-  User: {
+  user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     require: true,

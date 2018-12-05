@@ -13,13 +13,14 @@ const create = async (req, res, next) => {
 
     if (!post) {
       return res.status(404).json({
-        error: 'Post não encontrado',
+        error: 'Publicação não encontrada',
       });
     }
 
     const comment = await Comment.create({
       content,
       post: post.id,
+      user: req.userId,
     });
 
     post.comments.push(comment.id);
@@ -87,13 +88,53 @@ const show = async (req, res, next) => {
       });
     }
 
+    if (comment.user) { await comment.findByIdAndRemove(commentId); }
+
     return res.json(comment);
   } catch (err) {
     return next(err);
   }
 };
 
+const destroy = async (req, res, next) => {
+  try {
+    const { postId, commentId } = req.params;
+
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({
+        error: 'Publicação não encontrada',
+      });
+    }
+
+    const comment = await Comment.findById(commentId);
+
+    if (!comment) {
+      return res.status(404).json({
+        error: 'Publicação não encontrada',
+      });
+    }
+
+    if (
+      comment.user.toString() !== req.userId
+      || post.user.toString() !== req.userId
+    ) {
+      return res.status(400).json({
+        error: 'Você não pode deletar essa publicação',
+      });
+    }
+
+    const removedComment = await Comment.findByIdAndRemove(commentId);
+
+    return res.json(removedComment);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
+  destroy,
   like,
   create,
   show,
