@@ -48,10 +48,10 @@ const like = async (req, res, next) => {
       });
     }
 
-    const liked = indexOf(req.userId, post.likes) !== -1;
+    const liked = indexOf(req.userId, post.likes);
 
-    if (liked) {
-      post.likes.pop(liked);
+    if (liked !== -1) {
+      post.likes.splice(liked);
     } else {
       post.likes.push(req.userId);
     }

@@ -52,10 +52,10 @@ const like = async (req, res, next) => {
       });
     }
 
-    const liked = indexOf(req.userId, comment.likes) !== -1;
+    const liked = indexOf(req.userId, comment.likes);
 
-    if (liked) {
-      comment.likes.pop(liked);
+    if (liked !== -1) {
+      comment.likes.splice(liked);
     } else {
       comment.likes.push(req.userId);
     }
@@ -118,12 +118,20 @@ const destroy = async (req, res, next) => {
 
     if (
       comment.user.toString() !== req.userId
-      || post.user.toString() !== req.userId
+      && post.user.toString() !== req.userId
     ) {
       return res.status(400).json({
         error: 'Você não pode deletar essa publicação',
       });
     }
+
+    const postComment = indexOf(comment.id, post.comments) !== -1;
+
+    if (postComment) {
+      post.comments.splice(postComment);
+    }
+
+    await post.save();
 
     const removedComment = await Comment.findByIdAndRemove(commentId);
 
