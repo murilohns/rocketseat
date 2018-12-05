@@ -22,6 +22,7 @@ routes.use(authMiddleware.auth);
  * Posts
  */
 routes.post('/posts', controllers.postController.create);
+routes.get('/posts/:id', controllers.postController.show);
 
 routes.get('/status', (req, res, next) => {
   try {

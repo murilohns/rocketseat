@@ -17,6 +17,19 @@ const create = async (req, res, next) => {
   }
 };
 
+const show = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const post = await Post.findById(id);
+
+    return res.send(post);
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   create,
+  show,
 };
