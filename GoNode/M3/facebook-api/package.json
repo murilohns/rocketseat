@@ -28,6 +28,7 @@
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.12",
     "npm": "^6.4.1",
+    "ramda": "^0.26.1",
     "require-dir": "^1.1.0"
   }
 }

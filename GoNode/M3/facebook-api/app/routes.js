@@ -23,6 +23,7 @@ routes.use(authMiddleware.auth);
  */
 routes.post('/posts', controllers.postController.create);
 routes.get('/posts/:id', controllers.postController.show);
+routes.post('/posts/:id/like', controllers.postController.like);
 
 routes.get('/status', (req, res, next) => {
   try {
@@ -31,5 +32,9 @@ routes.get('/status', (req, res, next) => {
     return next(err);
   }
 });
+
+routes.use((req, res) => res.status(404).json({
+  error: 'Rota não encontrada',
+}));
 
 module.exports = routes;
