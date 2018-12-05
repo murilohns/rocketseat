@@ -20,9 +20,9 @@ const create = async (req, res, next) => {
 
 const show = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { postId } = req.params;
 
-    const post = await Post.findById(id);
+    const post = await Post.findById(postId);
 
     if (!post) {
       return res.status(404).json({
@@ -38,9 +38,9 @@ const show = async (req, res, next) => {
 
 const like = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { postId } = req.params;
 
-    const post = await Post.findById(id);
+    const post = await Post.findById(postId);
 
     if (!post) {
       return res.status(404).json({
@@ -48,7 +48,7 @@ const like = async (req, res, next) => {
       });
     }
 
-    const liked = indexOf(req.userId, post.likes) != -1;
+    const liked = indexOf(req.userId, post.likes) !== -1;
 
     if (liked) {
       post.likes.pop(liked);
@@ -63,6 +63,7 @@ const like = async (req, res, next) => {
     return next(err);
   }
 };
+
 module.exports = {
   create,
   like,
