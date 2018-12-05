@@ -29,6 +29,8 @@ routes.post('/posts/:postId/like', controllers.postController.like);
 /**
  * Comments
  */
+
+routes.get('/posts/:postId/comments/:commentId', controllers.commentController.show);
 routes.post('/posts/:postId/comments', controllers.commentController.create);
 routes.post('/posts/:postId/comments/:commentId/like', controllers.commentController.like);
 
