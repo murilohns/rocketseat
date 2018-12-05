@@ -18,6 +18,11 @@ routes.post('/signin', controllers.authController.signin);
 
 routes.use(authMiddleware.auth);
 
+/**
+ * Posts
+ */
+routes.post('/posts', controllers.postController.create);
+
 routes.get('/status', (req, res, next) => {
   try {
     return res.send('API UP');
