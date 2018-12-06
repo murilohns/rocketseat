@@ -10,25 +10,25 @@ const signup = async (req, res, next) => {
 
     if (!email) {
       return res.status(400).json({
-        error: 'email está faltando',
+        error: '"email" está faltando',
       });
     }
 
     if (!name) {
       return res.status(400).json({
-        error: 'nome está faltando',
+        error: '"name" está faltando',
       });
     }
 
     if (!password) {
       return res.status(400).json({
-        error: 'senha está faltando',
+        error: '"password" está faltando',
       });
     }
 
     if (password !== confirmPassword) {
       return res.status(400).json({
-        error: 'Confirmação de senha incorreta',
+        error: '"confirmPassword" incorreto',
       });
     }
 
@@ -57,6 +57,18 @@ const signin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
+    if (!email) {
+      return res.status(400).json({
+        error: '"email" está faltando',
+      });
+    }
+
+    if (!password) {
+      return res.status(400).json({
+        error: '"password" está faltando',
+      });
+    }
+
     const user = await User.findOne({
       email,
     });
@@ -69,7 +81,7 @@ const signin = async (req, res, next) => {
 
     if (!(await user.compareHash(password))) {
       return res.status(400).json({
-        error: 'Senha incorreta',
+        error: '"password" incorreta',
       });
     }
 

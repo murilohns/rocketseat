@@ -84,11 +84,9 @@ const show = async (req, res, next) => {
 
     if (!comment) {
       return res.status(404).json({
-        error: 'Post não encontrado',
+        error: 'Comentário não encontrado',
       });
     }
-
-    if (comment.user) { await comment.findByIdAndRemove(commentId); }
 
     return res.json(comment);
   } catch (err) {

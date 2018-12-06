@@ -26,7 +26,6 @@ routes.get('/posts/:postId', controllers.postController.show);
 routes.post('/posts/:postId/like', controllers.postController.like);
 routes.delete('/posts/:postId', controllers.postController.destroy);
 
-
 /**
  * Comments
  */
