@@ -2,7 +2,7 @@ version: "3"
 services:
   facebook-api:
     image: "node:8-alpine"
-    command: npm run dev
+    command: yarn run dev
     environment:
       DATABASE_URL: mongodb://mongodb/facebook-api
     volumes:
