@@ -29,11 +29,18 @@ routes.delete('/posts/:postId', controllers.postController.destroy);
 /**
  * Comments
  */
-
 routes.get('/posts/:postId/comments/:commentId', controllers.commentController.show);
 routes.post('/posts/:postId/comments', controllers.commentController.create);
 routes.post('/posts/:postId/comments/:commentId/like', controllers.commentController.like);
 routes.delete('/posts/:postId/comments/:commentId', controllers.commentController.destroy);
+
+/**
+ * Users (feed and update)
+ */
+routes.get('/users/self', controllers.userController.self);
+routes.get('/users/self/update', controllers.userController.update);
+routes.get('/users/feed', controllers.userController.feed);
+routes.get('/users/:id', controllers.userController.show);
 
 routes.get('/status', (req, res, next) => {
   try {
