@@ -42,6 +42,12 @@ routes.get('/users/self/update', controllers.userController.update);
 routes.get('/users/feed', controllers.userController.feed);
 routes.get('/users/:id', controllers.userController.show);
 
+/**
+ * Friends
+ */
+routes.post('/users/:id/friendship', controllers.friendController.addFriend);
+routes.delete('/users/:id/friendship', controllers.friendController.deleteFriend);
+
 routes.get('/status', (req, res, next) => {
   try {
     return res.send('API UP');
