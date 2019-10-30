@@ -27,7 +27,7 @@
     "handlebars": "^4.0.12",
     "html-to-text": "^4.0.0",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.15",
+    "mongoose": "^5.7.5",
     "nodemailer": "^4.6.8",
     "require-dir": "^1.0.0"
   }
